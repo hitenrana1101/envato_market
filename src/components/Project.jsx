@@ -211,7 +211,7 @@ const TodaySchedule = () => {
 
 const ProjectDashboard = () => {
     return (
-        <div className="min-h-screen bg-[#F4F5F7] p-6">
+        <div className="min-h-screen bg-[#F4F5F7] p-10">
             <div className="max-w-6xl mx-auto flex gap-6">
                 {/* Left side: overview + schedule */}
                 <div className="flex-1">

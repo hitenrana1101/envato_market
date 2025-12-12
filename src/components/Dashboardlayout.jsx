@@ -1,20 +1,19 @@
-// DashboardLayout.jsx
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+
 import Ecommerce from "./Ecommerce";
 import Project from "./Project";
 import Marketing from "./Marketing";
 import Analytic from "./Analytic";
+import AiChat from "./AiChat";
 
 const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-[#F9FAFB]">
-      {/* Sidebar */}
       <Sidebar />
 
       <div className="flex-1 flex flex-col">
-        {/* HEADER */}
         <header className="h-[72px] flex items-center justify-between px-6 border-b bg-white">
           <div className="flex items-center gap-3">
             <button className="p-2 rounded-lg hover:bg-gray-100 lg:hidden">
@@ -26,7 +25,6 @@ const DashboardLayout = () => {
             <h2 className="text-lg font-semibold text-[#111827]">Ecommerce</h2>
 
             <nav className="hidden md:flex items-center gap-4 text-sm text-[#6B7280] ml-4">
-              {/* overview tab */}
               <Link to="/dashboard" className="hover:text-[#111827]">
                 Overview
               </Link>
@@ -40,15 +38,17 @@ const DashboardLayout = () => {
           </div>
         </header>
 
-        {/* MAIN ROUTES */}
-        <main className="flex-1 p-6 bg-gray-50">
+        <main className="flex-1 bg-gray-50">
           <Routes>
-            {/* /dashboard  -> Ecommerce (overview) */}
             <Route path="/" element={<Ecommerce />} />
-            {/* /dashboard/project -> Project page */}
             <Route path="project" element={<Project />} />
-            <Route path="Marketing" element={<Marketing />} />
-            <Route path="Analytic" element={<Analytic/>} />
+            <Route path="marketing" element={<Marketing />} />
+            <Route path="analytic" element={<Analytic />} />
+
+            {/* AI -> Chat */}
+            <Route path="ai/chat" element={<AiChat />} />
+
+            {/* baaki routes baad mein add kar sakte ho */}
           </Routes>
         </main>
       </div>

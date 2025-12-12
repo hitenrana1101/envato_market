@@ -68,7 +68,7 @@ const campaigns = [
 
 const Marketing = () => {
   return (
-    <div>
+    <div className='p-6'>
 
       {/* ========= KPI SUMMARY BOX ========= */}
       <div className='bg-white border border-gray-300 rounded-[12px] h-[277.99px] w-[1165.2px] ml-5'>

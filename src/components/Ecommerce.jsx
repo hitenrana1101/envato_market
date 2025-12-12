@@ -8,7 +8,7 @@ import { TbDeviceMobileMessage } from "react-icons/tb";
 
 const Ecommerce = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       {/* Title row */}
       <div className="flex items-center justify-baseline ">
         <h1 className="text-xl font-semibold text-[#111827]">Overview</h1>
