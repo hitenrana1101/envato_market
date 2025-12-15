@@ -7,6 +7,8 @@ import Project from "./Project";
 import Marketing from "./Marketing";
 import Analytic from "./Analytic";
 import AiChat from "./AiChat";
+import Scrum_Board from "./Scrum_Board";
+import List from "./List"
 
 const DashboardLayout = () => {
   return (
@@ -47,6 +49,8 @@ const DashboardLayout = () => {
 
             {/* AI -> Chat */}
             <Route path="ai/chat" element={<AiChat />} />
+            <Route path="projects/scrum-board" element={<Scrum_Board />} />
+            <Route path="projects/List" element={<List/>}/> 
 
             {/* baaki routes baad mein add kar sakte ho */}
           </Routes>
