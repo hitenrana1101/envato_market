@@ -9,6 +9,7 @@ import Analytic from "./Analytic";
 import AiChat from "./AiChat";
 import Scrum_Board from "./Scrum_Board";
 import List from "./List"
+import Details from "./Details";
 
 const DashboardLayout = () => {
   return (
@@ -51,7 +52,7 @@ const DashboardLayout = () => {
             <Route path="ai/chat" element={<AiChat />} />
             <Route path="projects/scrum-board" element={<Scrum_Board />} />
             <Route path="projects/List" element={<List/>}/> 
-
+            <Route path="projects/Details" element={<Details/>}/>
             {/* baaki routes baad mein add kar sakte ho */}
           </Routes>
         </main>
