@@ -1,29 +1,29 @@
 import React from "react";
-import linegraph from "../assets/produce_monthly.webp"
-import graph from "../assets/graph.png"
+
+import linegraph from "../assets/produce_monthly.webp";
+import graph from "../assets/graph.png";
 import { IoCartOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { TbDeviceMobileMessage } from "react-icons/tb";
 
-
 const Ecommerce = () => {
   return (
     <div className="space-y-6 p-6">
-      {/* Title row */}
-      <div className="flex items-center justify-baseline ">
-        <h1 className="text-xl font-semibold text-[#111827]">Overview</h1>
-        <button className="px-3 py-1.5 rounded-lg border text-sm text-[#374151] flex items-center gap-1 ml-[550px] ">
-          Monthly
-          <span className="text-xs">▼</span>
-        </button>
-      </div>
-
-      {/* Top section: cards + right column */}
+      {/* MAIN GRID: LEFT OVERVIEW CARD + RIGHT SIDEBAR */}
       <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] gap-6">
-        {/* LEFT: cards + chart */}
-        <div className="space-y-6">
-          {/* 3 cards row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* LEFT: FULL OVERVIEW WHITE CARD */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6">
+          {/* Title row */}
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-xl font-semibold text-[#111827]">Overview</h1>
+            <button className="px-3 py-1.5 rounded-lg border text-sm text-[#374151] flex items-center gap-1">
+              Monthly
+              <span className="text-xs">▼</span>
+            </button>
+          </div>
+
+          {/* 3 stats cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <StatCard
               title="Total profit"
               value="$82,373.21"
@@ -44,14 +44,15 @@ const Ecommerce = () => {
             />
           </div>
 
-          {/* Chart box (sirf UI; baad me real chart lib use kar sakta hai) */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6">
+          {/* Line chart box */}
+          <div className="rounded-2xl border border-gray-100 p-4 md:p-6">
             <div className="h-[260px] md:h-[320px] flex items-end">
-              {/* fake line chart using gradient background; real project me chart.js/recharts use kar */}
               <div className="w-full h-full rounded-xl bg-gradient-to-t from-blue-100 via-blue-50 to-transparent relative overflow-hidden">
-                <div>
-                    <img src={linegraph} alt="" />
-                </div>
+                <img
+                  src={linegraph}
+                  alt="Line chart"
+                  className="w-full h-full object-contain"
+                />
                 <div className="absolute inset-x-6 bottom-4 text-xs text-gray-400 flex justify-between">
                   <span>01 Jun</span>
                   <span>02 Jun</span>
@@ -69,22 +70,22 @@ const Ecommerce = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-[14px] shadow">
-            <div className="">
-            <h1 className="ml-4">Top contries</h1>
-           </div>
-           <div className="mt-[25px]">
-            <div className="flex justify-between">
-            <img src={graph} alt="" className="w-[500px] " />
-            <div className="text-center mr-4">
-                United Status 
-            </div> 
+
+          {/* Top countries inside same card */}
+          <div className="mt-6 rounded-2xl border border-gray-100 p-4">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="font-semibold text-[#111827]">Top countries</h1>
             </div>
-           </div>
+            <div className="flex justify-between items-center">
+              <img src={graph} alt="Countries graph" className="w-[500px]" />
+              <div className="text-center mr-4 text-sm text-[#111827]">
+                United States
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* RIGHT: sales target + top products */}
+        {/* RIGHT: sales target + top products + channel revenue */}
         <div className="space-y-6">
           {/* Sales target */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
@@ -100,7 +101,7 @@ const Ecommerce = () => {
             </p>
             <p className="mt-2 text-sm text-gray-400">Made this month year</p>
 
-            {/* Circular progress placeholder */}
+            {/* Circular progress */}
             <div className="mt-4 flex justify-around">
               <div className="relative w-28 h-28">
                 <div className="w-full h-full rounded-full border-8 border-blue-100" />
@@ -150,110 +151,84 @@ const Ecommerce = () => {
               />
             </div>
           </div>
-          {/* channel revenue */}
-          <div className="p-4 bg-white shadow-xl rounded-2xl ">
+
+          {/* Channel revenue */}
+          <div className="p-4 bg-white shadow-xl rounded-2xl">
             <div className="flex justify-between">
               <h1>Channel revenue</h1>
-              <div> 
-                <button className=" border-gray-200 w-[100px] rounded-[5px] bg-gray-100">Monthly</button>
+              <div>
+                <button className="border-gray-200 w-[100px] rounded-[5px] bg-gray-100">
+                  Monthly
+                </button>
               </div>
             </div>
-            <div className="flex text-center items-center mt-5 ">
-                <h1 className="text-[30px] font-bold mr-3">3.4%</h1>
-                <span className="text-[12px] text-[#737373] w-[5px]">Growth Rate</span>
+            <div className="flex text-center items-center mt-5">
+              <h1 className="text-[30px] font-bold mr-3">3.4%</h1>
+              <span className="text-[12px] text-[#737373] w-[5px]">
+                Growth Rate
+              </span>
+            </div>
+            <div className="flex justify-around mt-7 text-[12px] font-bold">
+              <span className="border-t-4 border-t-blue-300 w-[70px] rounded-[2px]">
+                28%
+              </span>
+              <span className="border-t-4 border-t-green-300 w-[70px]">
+                32%
+              </span>
+              <span className="border-t-4 border-t-orange-200 w-[70px]">
+                40%
+              </span>
+            </div>
+            <div className="text-center items-center mt-4 bg-gray-100 rounded-[12px] p-4">
+              <div className="flex justify-around mt-3">
+                <IoCartOutline className="bg-blue-200 rounded-full h-8 w-8 p-2" />
+                <CiShop className="bg-green-300 rounded-full h-8 w-8 p-2" />
+                <TbDeviceMobileMessage className="bg-orange-200 rounded-full h-8 w-8 p-2" />
               </div>
-              <div className="flex justify-around mt-7 text-[12px] font-bold">
-                <span className=" border-t-3 border-t-blue-300 w-[70px] rounded-[2px]">28%</span>
-                <span className=" border-t-3 border-t-green-300 w-[70px]">32%</span>
-                <span className=" border-t-3 border-t-orange-200 w-[70px]">40%</span>
-              </div>
-              <div className=" text-center items-center mt-4 bg-gray-100 rounded-[12px] p-4">
-                <div className="flex justify-around mt-3">
-                   <IoCartOutline className="bg-blue-200 rounded-full h-8 w-8 p-2" /> 
-                   <CiShop className="bg-green-300 rounded-full h-8 w-8 p-2" /> 
-                   <TbDeviceMobileMessage className="bg-orange-200 rounded-full h-8 w-8 p-2" /> 
+              <div className="flex justify-around">
+                <div className="mt-4">
+                  <h1 className="text-[#171717] font-medium">$2.9k</h1>
+                  <p className="text-[10px] text-[#737373]">Online store</p>
                 </div>
-                <div className="flex justify-around  ">
-               <div className="mt-4">
-                <h1 className="text-[#171717] font-medium">$2.9k</h1>
-                <p className="text-[10px] text-[#737373]">Online store</p>
-               </div>
-               <div className="mt-4">
-                <h1 className="text-[#171717] font-medium">$2.9k</h1>
-                <p className="text-[10px] text-[#737373]">Physical store</p>
-               </div>
-               <div className="mt-4">
-                <h1 className="text-[#171717] font-medium">$2.9k</h1>
-                <p className="text-[10px] text-[#737373]">Social store</p>
-               </div>
-               </div>
+                <div className="mt-4">
+                  <h1 className="text-[#171717] font-medium">$2.9k</h1>
+                  <p className="text-[10px] text-[#737373]">Physical store</p>
+                </div>
+                <div className="mt-4">
+                  <h1 className="text-[#171717] font-medium">$2.9k</h1>
+                  <p className="text-[10px] text-[#737373]">Social store</p>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white w-[1200px] rounded-4xl shadow-2xs p-5">
+      {/* Recent orders table */}
+      <div className="bg-white w-full xl:w-[1200px] rounded-2xl shadow-sm border border-gray-100 p-5">
         <div className="flex justify-between">
-        <h3 className="font-medium text-[20px]">Recent orders</h3> 
-        <button className="border border-gray-300 rounded-[5px] w-[100px]">View Orders</button>
+          <h3 className="font-medium text-[20px]">Recent orders</h3>
+          <button className="border border-gray-300 rounded-[5px] w-[120px] text-sm">
+            View Orders
+          </button>
         </div>
         <div className="text-center items-center text-[14px] justify-center">
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span>order</span>
+          <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
+            <span>Order</span>
             <span>Status</span>
             <span>Date</span>
             <span>Customer</span>
             <span>Amount spent</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-green-700 font-bold text-[14px]">Paid</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-orange-400 font-bold text-[14px]">pending</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-green-700 font-bold text-[14px]">paid</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-green-700 font-bold text-[14px]">paid</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-orange-400 font-bold text-[14px]">Pending</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-red-500 font-bold text-[14px] items-center">Failed</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="inter text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
-        <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
-            <span className="font-medium">#92627</span>
-            <span className="text-green-700 font-bold text-[14px]">Paid</span>
-            <span>09/07/2025</span>
-            <span>Tara Flecher </span>
-            <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
-        </div>
+          </div>
+
+          {/* rows - tu yaha map bhi use kar sakta hai baad me */}
+          <OrderRow status="Paid" statusColor="text-green-700" />
+          <OrderRow status="Pending" statusColor="text-orange-400" />
+          <OrderRow status="Paid" statusColor="text-green-700" />
+          <OrderRow status="Paid" statusColor="text-green-700" />
+          <OrderRow status="Pending" statusColor="text-orange-400" />
+          <OrderRow status="Failed" statusColor="text-red-500" />
+          <OrderRow status="Paid" statusColor="text-green-700" />
         </div>
       </div>
     </div>
@@ -265,10 +240,10 @@ const StatCard = ({ title, value, change, changeColor }) => (
     <p className="text-sm text-gray-500">{title}</p>
     <p className="mt-2 text-2xl font-semibold text-[#111827]">{value}</p>
     <p className={`mt-1 text-xs font-medium ${changeColor}`}>
-      {change} <span className="text-gray-400 font-normal">from last month</span>
+      {change}{" "}
+      <span className="text-gray-400 font-normal">from last month</span>
     </p>
   </div>
-  
 );
 
 const TopProduct = ({ name, sold, change, changeColor }) => (
@@ -286,8 +261,18 @@ const TopProduct = ({ name, sold, change, changeColor }) => (
       {change}
     </span>
   </div>
-
 );
 
+const OrderRow = ({ status, statusColor }) => (
+  <div className="flex justify-around mt-10 text-[12px] text-[#737373]">
+    <span className="font-medium">#92627</span>
+    <span className={`${statusColor} font-bold text-[14px] capitalize`}>
+      {status}
+    </span>
+    <span>09/07/2025</span>
+    <span>Tara Flecher</span>
+    <span className="text-[#171717] text-[14px] font-bold">$279.00</span>
+  </div>
+);
 
 export default Ecommerce;
