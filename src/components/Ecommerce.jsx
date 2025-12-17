@@ -1,4 +1,6 @@
 import React from "react";
+import {Chart as Chartjs} from "chart.js/auto";
+import {Bar, Doughnut, Line} from "react-chartjs-2";
 
 import linegraph from "../assets/produce_monthly.webp";
 import graph from "../assets/graph.png";

@@ -13,9 +13,10 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { PiBrain } from "react-icons/pi";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-const ChildLink = ({ to, label }) => (
+const ChildLink = ({ to, label, onClick }) => (
   <NavLink
     to={to}
+    onClick={onClick}
     className={({ isActive }) =>
       `flex items-center pl-8 pr-3 py-1.5 text-sm rounded-xl
        ${isActive ? "text-[#2563EB]" : "text-[#6B7280] hover:text-[#111827]"}`
@@ -26,7 +27,7 @@ const ChildLink = ({ to, label }) => (
   </NavLink>
 );
 
-const DropdownItem = ({ icon: Icon, label, childrenItems }) => {
+const DropdownItem = ({ icon: Icon, label, childrenItems, onChildClick }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -48,7 +49,12 @@ const DropdownItem = ({ icon: Icon, label, childrenItems }) => {
       {open && (
         <div className="mt-1 space-y-1">
           {childrenItems.map((item) => (
-            <ChildLink key={item.label} to={item.to} label={item.label} />
+            <ChildLink
+              key={item.label}
+              to={item.to}
+              label={item.label}
+              onClick={onChildClick}
+            />
           ))}
         </div>
       )}
@@ -56,9 +62,10 @@ const DropdownItem = ({ icon: Icon, label, childrenItems }) => {
   );
 };
 
-const SidebarItem = ({ to, icon: Icon, label }) => (
+const SidebarItem = ({ to, icon: Icon, label, onClick }) => (
   <NavLink
     to={to}
+    onClick={onClick}
     className={({ isActive }) =>
       `w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm
        ${isActive ? "bg-[#EEF2FF] text-[#111827]" : "text-[#4B5563] hover:bg-gray-100"}`
@@ -71,45 +78,61 @@ const SidebarItem = ({ to, icon: Icon, label }) => (
   </NavLink>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ onLinkClick }) => {
+  const closeOnClick = onLinkClick || (() => {});
+
   return (
-    <aside className="h-[230vh] w-[260px] bg-white border-r border-gray-200 flex flex-col">
-      <div className="flex items-center px-6 py-5 border-b border-gray-100">
+    <aside className="w-[260px] h-full bg-white border-r border-gray-200 flex flex-col">
+      {/* top logo */}
+      <div className="flex items-center px-6 py-5 border-b border-gray-100 flex-shrink-0">
         <div className="w-9 h-9 rounded-xl bg-[#111827] flex items-center justify-center text-white text-xl font-bold">
           e
         </div>
         <span className="ml-3 text-xl font-semibold text-[#111827]">Ecme</span>
       </div>
 
+      {/* scrollable menu */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
         <p className="text-xs font-semibold text-gray-400 mb-2">DASHBOARD</p>
 
-        <SidebarItem to="/dashboard" icon={FiShoppingCart} label="Ecommerce" />
+        <SidebarItem
+          to="/dashboard"
+          icon={FiShoppingCart}
+          label="Ecommerce"
+          onClick={closeOnClick}
+        />
 
         <nav className="mt-3 space-y-1">
-          <SidebarItem to="/dashboard/project" icon={FiFolder} label="Project" />
+          <SidebarItem
+            to="/dashboard/project"
+            icon={FiFolder}
+            label="Project"
+            onClick={closeOnClick}
+          />
           <SidebarItem
             to="/dashboard/marketing"
             icon={BiBarChart}
             label="Marketing"
+            onClick={closeOnClick}
           />
           <SidebarItem
             to="/dashboard/analytic"
             icon={BiBarChart}
             label="Analytic"
+            onClick={closeOnClick}
           />
         </nav>
 
         <p className="mt-6 text-xs font-semibold text-gray-400 mb-2">
           CONCEPTS
         </p>
+
         <nav className="space-y-1">
           <DropdownItem
             icon={PiBrain}
             label="AI"
-            childrenItems={[
-              { label: "Chat", to: "/dashboard/ai/chat" },
-            ]}
+            childrenItems={[{ label: "Chat", to: "/dashboard/ai/chat" }]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
@@ -122,42 +145,42 @@ const Sidebar = () => {
               { label: "Tasks", to: "/dashboard/projects/tasks" },
               { label: "Issue", to: "/dashboard/projects/issue" },
             ]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
             icon={FiUsers}
             label="Customer"
             childrenItems={[{ label: "List", to: "/dashboard/customer/list" }]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
             icon={FiBox}
             label="Products"
-            childrenItems={[
-              { label: "All Products", to: "/dashboard/products" },
-            ]}
+            childrenItems={[{ label: "All Products", to: "/dashboard/products" }]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
             icon={FiShoppingBag}
             label="Orders"
             childrenItems={[{ label: "All Orders", to: "/dashboard/orders" }]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
             icon={HiOutlineUserCircle}
             label="Account"
-            childrenItems={[
-              { label: "Profile", to: "/dashboard/account/profile" },
-            ]}
+            childrenItems={[{ label: "Profile", to: "/dashboard/account/profile" }]}
+            onChildClick={closeOnClick}
           />
 
           <DropdownItem
             icon={BiHelpCircle}
             label="Help Center"
-            childrenItems={[
-              { label: "Support", to: "/dashboard/help/support" },
-            ]}
+            childrenItems={[{ label: "Support", to: "/dashboard/help/support" }]}
+            onChildClick={closeOnClick}
           />
         </nav>
       </div>
