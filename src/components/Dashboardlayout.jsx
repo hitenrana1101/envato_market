@@ -18,7 +18,7 @@ const DashboardLayout = () => {
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <div className="flex min-h-screen bg-[#F9FAFB] overflow-x-hidden">
+    <div className="flex min-h-screen bg-white overflow-x-hidden">
       {/* HEADER FIXED TOP */}
       <header className="h-[72px] flex items-center justify-between px-4 md:px-6 border-b bg-white fixed top-0 left-0 right-0 z-40">
         <div className="flex items-center gap-3">
