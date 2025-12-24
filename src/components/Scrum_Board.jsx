@@ -1,8 +1,7 @@
-// Scrum_Board.jsx
 import React from "react";
 
 const Column = ({ title, children }) => (
-  <div className="bg-white rounded-2xl shadow-sm px-4 py-4 w-70 flex-shrink-0 border border-gray-100">
+  <div className="bg-white rounded-2xl shadow-sm px-4 py-4 w-fit flex-shrink-0 border border-gray-100">
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-[13px] font-semibold text-gray-800">{title}</h3>
       <button className="text-gray-400 text-lg leading-none">⋯</button>
@@ -12,7 +11,7 @@ const Column = ({ title, children }) => (
 );
 
 const Card = ({ title, tags = [] }) => (
-  <div className="bg-white rounded-xl border border-gray-200 px-3 py-3 shadow-sm">
+  <div className="bg-white rounded-xl border border-gray-200 px-3 py-3 shadow-sm w-fit">
     <h4 className="text-[13px] font-medium text-gray-900 mb-2 leading-snug">
       {title}
     </h4>
@@ -52,12 +51,14 @@ const Card = ({ title, tags = [] }) => (
 
 const Scrum_Board = () => {
   return (
-    <div className="min-h-screen bg-[#F5F5F7] flex justify-center py-6">
-      <div className="w-full max-w-6xl">
+    <div className="min-h-screen bg-[#F5F5F7] flex justify-center py-6 px-3 sm:w-fit">
+      <div className="w-full max-w-6xl sm:w-fit">
         {/* Header */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
           <div>
-            <h1 className="text-[20px] font-semibold text-gray-900">Sprint 2</h1>
+            <h1 className="text-[20px] font-semibold text-gray-900">
+              Sprint 2
+            </h1>
             <p className="text-[11px] text-gray-400">Web App Project</p>
           </div>
 
@@ -84,8 +85,8 @@ const Scrum_Board = () => {
           </div>
         </div>
 
-        {/* Columns */}
-        <div className="flex gap-4">
+        {/* Desktop: normal wrap layout */}
+        <div className="hidden sm:flex flex-wrap gap-4">
           <Column title="To Do">
             <Card
               title="Unable to upload file"
@@ -148,6 +149,79 @@ const Scrum_Board = () => {
               tags={[{ label: "Low priority", type: "task" }]}
             />
           </Column>
+        </div>
+
+        {/* Mobile: horizontal slider */}
+        <div className="sm:hidden mt-4">
+          <div className="overflow-x-auto pb-3">
+            <div className="flex gap-4">
+              <Column title="To Do">
+                <Card
+                  title="Unable to upload file"
+                  tags={[
+                    { label: "Task", type: "task" },
+                    { label: "Live issue", type: "live" },
+                  ]}
+                />
+                <Card
+                  title="Table data incorrect"
+                  tags={[{ label: "Bug", type: "bug" }]}
+                />
+                <Card
+                  title="Fix broken UI"
+                  tags={[{ label: "Low priority", type: "task" }]}
+                />
+              </Column>
+
+              <Column title="In Progress">
+                <Card
+                  title="Fix dashboard layout"
+                  tags={[{ label: "Bug", type: "bug" }]}
+                />
+                <Card
+                  title="New design"
+                  tags={[{ label: "Task", type: "task" }]}
+                />
+                <Card
+                  title="Improve user experiences"
+                  tags={[
+                    { label: "Low priority", type: "task" },
+                    { label: "Task", type: "task" },
+                  ]}
+                />
+              </Column>
+
+              <Column title="To Review">
+                <Card
+                  title="Update node environment"
+                  tags={[{ label: "Low priority", type: "task" }]}
+                />
+                <Card
+                  title="Remove user data"
+                  tags={[{ label: "Live issue", type: "live" }]}
+                />
+              </Column>
+
+              <Column title="Completed">
+                <Card
+                  title="Ready to test"
+                  tags={[{ label: "Task", type: "task" }]}
+                />
+                <Card
+                  title="Slow API connection"
+                  tags={[{ label: "Bug", type: "bug" }]}
+                />
+                <Card
+                  title="Login failed"
+                  tags={[{ label: "Live issue", type: "live" }]}
+                />
+                <Card
+                  title="Locale incorrect"
+                  tags={[{ label: "Low priority", type: "task" }]}
+                />
+              </Column>
+            </div>
+          </div>
         </div>
       </div>
     </div>
