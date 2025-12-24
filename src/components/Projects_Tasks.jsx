@@ -1,217 +1,161 @@
-import React from 'react'
+import React from "react";
 import { MdCheckCircle } from "react-icons/md";
-import img1 from "../assets/thumb-1.jpg"
-import img2 from "../assets/thumb-2.jpg"
-import img3 from "../assets/thumb-3.jpg"
+import img1 from "../assets/thumb-1.jpg";
+import img2 from "../assets/thumb-2.jpg";
+import img3 from "../assets/thumb-3.jpg";
+
+const avatars = [img1, img2, img3];
+
+const TaskRow = ({ title, tags = [], date }) => (
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 py-2">
+    {/* left */}
+    <div className="flex items-center gap-3 px-3">
+      <MdCheckCircle className={titleSectionColor(title)} />
+      <h3 className="text-[14px] font-semibold text-[#171717]">{title}</h3>
+    </div>
+
+    {/* right */}
+    <div className="flex flex-wrap items-center gap-2 text-[12px] px-3 md:px-0">
+      {tags.map((tag, idx) => (
+        <span
+          key={idx}
+          className={`h-[25px] px-2 rounded-[8px] flex items-center justify-center font-medium ${
+            tagColor(tag)
+          }`}
+        >
+          {tag}
+        </span>
+      ))}
+
+      {date && (
+        <span className="text-[#737373] font-medium text-[13px] ml-auto md:ml-4">
+          {date}
+        </span>
+      )}
+
+      <div className="flex ml-auto md:ml-4">
+        {avatars.map((a, i) => (
+          <img
+            key={i}
+            src={a}
+            alt=""
+            className="h-[25px] w-[25px] rounded-full -ml-1 first:ml-0 border-2 border-white"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+// color helpers
+const tagColor = (tag) => {
+  if (tag === "Task")
+    return "bg-[#DBEAFE] text-[#1d4ed8]";
+  if (tag === "Live issue" || tag === "Live Priority")
+    return "bg-[#FFE4E6] text-[#be123c]";
+  if (tag === "Bug" || tag === "bug")
+    return "bg-[#FEF3C6] text-[#92400e]";
+  if (tag === "Low priority")
+    return "bg-[#F3E8FF] text-[#6b21a8]";
+  return "bg-gray-100 text-[#374151]";
+};
+
+const titleSectionColor = (title) =>
+  ["Ready to test", "Slow API connection", "Login failed", "Locale incorrect"].includes(
+    title
+  )
+    ? "text-blue-700"
+    : "text-gray-500";
+
+const Section = ({ title, children }) => (
+  <div className="mt-8">
+    <h4 className="font-bold text-[20px] px-2">{title}</h4>
+    <div className="mt-2 rounded-[14px] border border-gray-100 bg-white">
+      {children}
+    </div>
+  </div>
+);
+
 const Projects_Tasks = () => {
   return (
-    <div>
-        <div>
-            <div>
-                <h4 className='font-bold text-[20px] p-2'>To Do</h4>
-            </div>
-            <div className='flex justify-between'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Unable to upload file</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#DBEAFE] h-[25px] w-[40px] p-1 rounded-[8px] items-center font-medium text-center'>Task</h4>
-              <h4 className='bg-[#FFE4E6] h-[25px] w-[79px]  p-1 rounded-[8px] font-medium text-center'>Live issue</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-10'>August 05</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Table data incorrect</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FEF3C6] h-[25px] w-[38px]  p-1 rounded-[8px] font-medium text-center'>Bug</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[133px] mr-5'>July 11</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Fix broken UI</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#F3E8FF] h-[25px] w-[90px] p-1 rounded-[8px] items-center font-medium mr-10 text-center'>Low priority</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-10'>August 05</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <h4 className='font-bold text-[20px] p-2 mt-12'>In Progress</h4>
-            </div>
-            <div className='flex justify-between'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Fix dashboard layout</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#DBEAFE] h-[25px] w-[40px] p-1 rounded-[8px] mr-25 items-center font-medium text-center'>Bug</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-10'>April 17</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>New design</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FEF3C6] h-[25px] w-[43px]  p-1 rounded-[8px] font-medium mr-6 text-center'>Task</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[133px] mr-5'>-</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Improve user experiences</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#F3E8FF] h-[25px] w-[90px] p-1 rounded-[8px] items-center font-medium  text-center'>Low priority</h4>
-              <h4 className='bg-[#F3E8FF] h-[25px] w-[45px] p-1 rounded-[8px] items-center mr-10 font-medium text-center'>Task</h4>
+    <div className="w-full max-w-[900px]">
+      {/* TO DO */}
+      <Section title="To Do">
+        <TaskRow
+          title="Unable to upload file"
+          tags={["Task", "Live issue"]}
+          date="August 05"
+        />
+        <TaskRow
+          title="Table data incorrect"
+          tags={["Bug"]}
+          date="July 11"
+        />
+        <TaskRow
+          title="Fix broken UI"
+          tags={["Low priority"]}
+          date="August 05"
+        />
+      </Section>
 
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 '>May 20</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-        </div>
-        {/* To review */}
-        <div>
-            <div>
-                <h4 className='font-bold text-[20px] p-2 mt-12'>To Review</h4>
-            </div>
-            <div className='flex justify-between'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Update node environment</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#F3E8FF] h-[25px] w-[90px] p-1 rounded-[8px] mr-21 items-center font-medium text-center'>Low priority</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-6 mr-6'>-</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle />
-             <h3 className='text-[14px] font-semibold'>Remove user data</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FFE4E6] h-[25px] w-[80px] p-1 rounded-[8px] mr-5 font-medium text-center'>Live issue</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[100px] mr-6'>-</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <h4 className='font-bold text-[20px] p-2 mt-12'>Completed</h4>
-            </div>
-            <div className='flex justify-between'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle className='text-blue-700'/>
-             <h3 className='text-[14px] font-semibold'>Ready to test</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#F3E8FF] h-[25px] w-[45px] p-1 rounded-[8px] mr-27 items-center font-medium text-center'>Task</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-6 '>April 04</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle className='text-blue-700'/>
-             <h3 className='text-[14px] font-semibold'>Slow API connection</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FFE4E6] h-[25px] w-[40px] p-1 rounded-[8px] mr-5 font-medium text-center'>bug</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[100px] '>August 19</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle className='text-blue-700'/>
-             <h3 className='text-[14px] font-semibold'>Login failed</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FFE4E6] h-[25px] w-[80px] p-1 rounded-[8px] mr-5 font-medium text-center'>Live issue</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[80px] '>May 06</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-            <div className='flex justify-between mt-4'>
-            <div className='px-5 gap-4 flex items-center mt-4'>
-             <MdCheckCircle className='text-blue-700'/>
-             <h3 className='text-[14px] font-semibold'>Locale incorrect</h3>
-            </div>
-            <div className='flex gap-2 text-[12px] mt-3 '>
-              <h4 className='bg-[#FFE4E6] h-[25px] w-[90px] p-1 rounded-[8px]  font-medium text-center'>Live Priority</h4>
-              <h4 className='text-[#737373] font-medium text-[14px] p-1 ml-[75px]'>August 13</h4>
-              <div className='flex w-[50px] ml-10'>
-                <img src={img1} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img2} alt="" className='h-[25px] w-[25px] rounded-full'/>
-                <img src={img3} alt="" className='h-[25px] w-[25px] rounded-full'/>
-              </div>
-            </div>
-            </div>
-        </div>
+      {/* IN PROGRESS */}
+      <Section title="In Progress">
+        <TaskRow
+          title="Fix dashboard layout"
+          tags={["Bug"]}
+          date="April 17"
+        />
+        <TaskRow
+          title="New design"
+          tags={["Task", "Low priority"]}
+          date="-"
+        />
+        <TaskRow
+          title="Improve user experiences"
+          tags={["Low priority", "Task"]}
+          date="May 20"
+        />
+      </Section>
+
+      {/* TO REVIEW */}
+      <Section title="To Review">
+        <TaskRow
+          title="Update node environment"
+          tags={["Low priority"]}
+          date="-"
+        />
+        <TaskRow
+          title="Remove user data"
+          tags={["Live issue"]}
+          date="-"
+        />
+      </Section>
+
+      {/* COMPLETED */}
+      <Section title="Completed">
+        <TaskRow
+          title="Ready to test"
+          tags={["Task"]}
+          date="April 04"
+        />
+        <TaskRow
+          title="Slow API connection"
+          tags={["bug"]}
+          date="August 19"
+        />
+        <TaskRow
+          title="Login failed"
+          tags={["Live issue"]}
+          date="May 06"
+        />
+        <TaskRow
+          title="Locale incorrect"
+          tags={["Live Priority"]}
+          date="August 13"
+        />
+      </Section>
     </div>
-  )
-}
+  );
+};
 
-export default Projects_Tasks
+export default Projects_Tasks;

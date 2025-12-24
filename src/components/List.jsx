@@ -4,24 +4,27 @@ import { AiOutlineFileProtect } from "react-icons/ai";
 
 const List = () => {
   return (
-    <div>
-      <div>
-        {/* Header */}
-        <div className="flex justify-between p-7">
+    <div className="min-h-screen bg-white flex justify-center">
+      {/* desktop pe 1160 ke aas‑paas width, mobile pe full */}
+      <div className="w-full max-w-[1160px]">
+        {/* Header – same spacing as original */}
+        <div className="flex items-center justify-between px-7 py-6">
           <h3 className="text-[24px] font-bold">Projects</h3>
           <button
-            className="bg-blue-500 text-white font-bold hover:bg-blue-400 px-4 py-3 rounded-[11px]"
+            className="bg-blue-500 text-white font-bold hover:bg-blue-400 px-4 py-3 rounded-[11px] text-[14px] whitespace-nowrap"
           >
-            <a href="">Create project</a>
+            Create project
           </button>
         </div>
 
         {/* Favorite section */}
-        <div className="px-8">
+        <div className="px-7 sm:px-8">
           <h3 className="text-[20px] font-bold">Favorite</h3>
-          <div className="flex gap-8 flex-wrap">
+
+          {/* Desktop: same 4 cards row with gap, mobile: wrap */}
+          <div className="mt-2 flex flex-wrap lg:flex-nowrap gap-6 lg:gap-8">
             {/* Card 1 */}
-            <div className="border border-gray-200 w-[272px] rounded-[12px] h-[214px] mt-4">
+            <div className="border border-gray-200 w-full sm:w-[272px] rounded-[12px] h-[214px] mt-4">
               <div className="flex justify-between p-5">
                 <h3 className="text-[16px] font-bold">EVO SaaS</h3>
                 <FaRegStar />
@@ -55,7 +58,7 @@ const List = () => {
             </div>
 
             {/* Card 2 */}
-            <div className="border shadow border-gray-200 w-[272px] rounded-[12px] h-[220px] mt-4">
+            <div className="border shadow border-gray-200 w-full sm:w-[272px] rounded-[12px] h-[220px] mt-4">
               <div className="flex justify-between p-5">
                 <h3 className="text-[16px] font-bold">AIA Bill App</h3>
                 <FaRegStar />
@@ -89,7 +92,7 @@ const List = () => {
             </div>
 
             {/* Card 3 */}
-            <div className="border shadow border-gray-200 w-[272px] rounded-[12px] h-[214px] mt-4">
+            <div className="border shadow border-gray-200 w-full sm:w-[272px] rounded-[12px] h-[214px] mt-4">
               <div className="flex justify-between p-5">
                 <h3 className="text-[16px] font-bold">IOP Web</h3>
                 <FaRegStar />
@@ -123,7 +126,7 @@ const List = () => {
             </div>
 
             {/* Card 4 */}
-            <div className="border shadow border-gray-200 w-[272px] rounded-[12px] h-[214px] mt-4">
+            <div className="border shadow border-gray-200 w-full sm:w-[272px] rounded-[12px] h-[214px] mt-4">
               <div className="flex justify-between p-5">
                 <h3 className="text-[16px] font-bold">Octonine POS</h3>
                 <FaRegStar />
@@ -158,188 +161,93 @@ const List = () => {
           </div>
         </div>
 
-        {/* Other Projects section */}
-        <div>
-          <div className="px-8 mt-7">
+        {/* Other Projects section – desktop UI same, sirf mobile pe stack */}
+        <div className="mt-7">
+          <div className="px-8">
             <h3 className="text-[20px] font-bold">Other projects</h3>
           </div>
 
-          {/* Row 1 */}
-          <div className="mt-4 mx-8 border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-            {/* Left: title + subtitle */}
-            <div className="min-w-[220px]">
-              <h3 className="text-[16px] font-bold">Evo SaaS API</h3>
-              <p className="text-[#737373] text-sm">Backend Services</p>
-            </div>
-
-            {/* Tasks count */}
-            <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
-              <AiOutlineFileProtect className="mr-1" />
-              <p>13 / 15</p>
-            </div>
-
-            {/* Progress bar + percentage */}
-            <div className="flex-1 flex items-center gap-3">
-              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#10b981] h-2 rounded-full"
-                  style={{ width: "87%" }}
-                ></div>
+          {[
+            {
+              title: "Evo SaaS API",
+              sub: "Backend Services",
+              ratio: "13 / 15",
+              color: "bg-[#10b981]",
+              width: "87%",
+              pct: "87%",
+            },
+            {
+              title: "Posiflex Web",
+              sub: "Frontend Web Application",
+              ratio: "9 / 18",
+              color: "bg-[#FFB900]",
+              width: "50%",
+              pct: "50%",
+            },
+            {
+              title: "FoksMart APP",
+              sub: "Mobile Application",
+              ratio: "19 / 26",
+              color: "bg-[#FFB900]",
+              width: "67%",
+              pct: "67%",
+            },
+            {
+              title: "FlowBuzz SEO",
+              sub: "Marketing",
+              ratio: "19 / 26",
+              color: "bg-[#10b981]",
+              width: "88%",
+              pct: "88%",
+            },
+            {
+              title: "Mind Blast APP",
+              sub: "Mobile Application",
+              ratio: "31 / 74",
+              color: "bg-[#FFB900]",
+              width: "42%",
+              pct: "42%",
+            },
+          ].map((row, i) => (
+            <div
+              key={i}
+              className="mt-4 mx-4 sm:mx-8 border border-gray-200 rounded-xl px-5 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
+              {/* Left: title + subtitle */}
+              <div className="min-w-[220px]">
+                <h3 className="text-[16px] font-bold">{row.title}</h3>
+                <p className="text-[#737373] text-sm">{row.sub}</p>
               </div>
-              <span className="font-semibold text-sm">87%</span>
-            </div>
 
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
-              <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
-            </div>
-
-            {/* Star */}
-            <button className="text-gray-400 hover:text-yellow-400">
-              <FaRegStar />
-            </button>
-          </div>
-          <div className="mt-4 mx-8 border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-            {/* Left: title + subtitle */}
-            <div className="min-w-[220px]">
-              <h3 className="text-[16px] font-bold">Posiflex Web</h3>
-              <p className="text-[#737373] text-sm">Frontend Web Application</p>
-            </div>
-
-            {/* Tasks count */}
-            <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
-              <AiOutlineFileProtect className="mr-1" />
-              <p>9 / 18</p>
-            </div>
-
-            {/* Progress bar + percentage */}
-            <div className="flex-1 flex items-center gap-3">
-              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#FFB900] h-2 rounded-full"
-                  style={{ width: "50%" }}
-                ></div>
+              {/* Tasks count */}
+              <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
+                <AiOutlineFileProtect className="mr-1" />
+                <p>{row.ratio}</p>
               </div>
-              <span className="font-semibold text-sm">50%</span>
-            </div>
 
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
-              <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
-            </div>
-
-            {/* Star */}
-            <button className="text-gray-400 hover:text-yellow-400">
-              <FaRegStar />
-            </button>
-          </div>
-          <div className="mt-4 mx-8 border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-            {/* Left: title + subtitle */}
-            <div className="min-w-[220px]">
-              <h3 className="text-[16px] font-bold">FoksMart APP</h3>
-              <p className="text-[#737373] text-sm">Mobile Application</p>
-            </div>
-
-            {/* Tasks count */}
-            <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
-              <AiOutlineFileProtect className="mr-1" />
-              <p>19 / 26</p>
-            </div>
-
-            {/* Progress bar + percentage */}
-            <div className="flex-1 flex items-center gap-3">
-              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#FFB900] h-2 rounded-full"
-                  style={{ width: "87%" }}
-                ></div>
+              {/* Progress bar + percentage */}
+              <div className="flex-1 flex items-center gap-3">
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div
+                    className={`h-2 rounded-full ${row.color}`}
+                    style={{ width: row.width }}
+                  ></div>
+                </div>
+                <span className="font-semibold text-sm">{row.pct}</span>
               </div>
-              <span className="font-semibold text-sm">67%</span>
-            </div>
 
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
-              <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
-            </div>
-
-            {/* Star */}
-            <button className="text-gray-400 hover:text-yellow-400">
-              <FaRegStar />
-            </button>
-          </div>
-          <div className="mt-4 mx-8 border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-            {/* Left: title + subtitle */}
-            <div className="min-w-[220px]">
-              <h3 className="text-[16px] font-bold">FlowBuzz SEO</h3>
-              <p className="text-[#737373] text-sm">Marketing</p>
-            </div>
-
-            {/* Tasks count */}
-            <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
-              <AiOutlineFileProtect className="mr-1" />
-              <p>19 / 26</p>
-            </div>
-
-            {/* Progress bar + percentage */}
-            <div className="flex-1 flex items-center gap-3">
-              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#10b981] h-2 rounded-full"
-                  style={{ width: "88%" }}
-                ></div>
+              {/* Avatars */}
+              <div className="flex -space-x-2">
+                <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
+                <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
               </div>
-              <span className="font-semibold text-sm">88%</span>
-            </div>
 
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
-              <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
+              {/* Star */}
+              <button className="text-gray-400 hover:text-yellow-400">
+                <FaRegStar />
+              </button>
             </div>
-
-            {/* Star */}
-            <button className="text-gray-400 hover:text-yellow-400">
-              <FaRegStar />
-            </button>
-          </div>
-          <div className="mt-4 mx-8 border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
-            {/* Left: title + subtitle */}
-            <div className="min-w-[220px]">
-              <h3 className="text-[16px] font-bold">Mind Blast APP</h3>
-              <p className="text-[#737373] text-sm">Mobile Application</p>
-            </div>
-
-            {/* Tasks count */}
-            <div className="flex items-center text-[#737373] text-[12px] font-semibold border px-2 py-1 border-gray-300 rounded-[12px]">
-              <AiOutlineFileProtect className="mr-1" />
-              <p>31 / 74</p>
-            </div>
-
-            {/* Progress bar + percentage */}
-            <div className="flex-1 flex items-center gap-3">
-              <div className="flex-1 bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-[#FFB900] h-2 rounded-full"
-                  style={{ width: "42%" }}
-                ></div>
-              </div>
-              <span className="font-semibold text-sm">42%</span>
-            </div>
-
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              <div className="h-7 w-7 rounded-full bg-red-400 border-2 border-white" />
-              <div className="h-7 w-7 rounded-full bg-blue-400 border-2 border-white" />
-            </div>
-
-            {/* Star */}
-            <button className="text-gray-400 hover:text-yellow-400">
-              <FaRegStar />
-            </button>
-          </div>
+          ))}
         </div>
       </div>
     </div>

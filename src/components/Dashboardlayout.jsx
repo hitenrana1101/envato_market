@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import img from "../assets/thumb-1.jpg"
 
 import Ecommerce from "./Ecommerce";
 import Project from "./Project";
@@ -48,7 +49,8 @@ const DashboardLayout = () => {
           <button className="p-2 rounded-full hover:bg-gray-100 text-lg">
             🔔
           </button>
-          <div className="w-9 h-9 rounded-full bg-gray-300 overflow-hidden" />
+          <div className="w-9 h-9 rounded-full overflow-hidden" />
+          <img src={img} alt="" className="w-9 h-9 rounded-full overflow-hidden"/>
         </div>
       </header>
 

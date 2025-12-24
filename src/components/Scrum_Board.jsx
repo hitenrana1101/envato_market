@@ -2,7 +2,7 @@
 import React from "react";
 
 const Column = ({ title, children }) => (
-  <div className="bg-white rounded-2xl shadow-sm px-4 py-4 w-72 flex-shrink-0 border border-gray-100">
+  <div className="bg-white rounded-2xl shadow-sm px-4 py-4 w-70 flex-shrink-0 border border-gray-100">
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-[13px] font-semibold text-gray-800">{title}</h3>
       <button className="text-gray-400 text-lg leading-none">⋯</button>
