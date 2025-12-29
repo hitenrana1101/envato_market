@@ -49,14 +49,13 @@ const DashboardLayout = () => {
           <button className="p-2 rounded-full hover:bg-gray-100 text-lg">
             🔔
           </button>
-          <div className="w-9 h-9 rounded-full overflow-hidden" />
-          <img src={img} alt="" className="w-9 h-9 rounded-full overflow-hidden"/>
+          <img src={img} alt="" className="w-9 h-9 rounded-full object-cover" />
         </div>
-      </header>
+       </header>
 
-      {/* SIDEBAR: desktop pe hamesha open, mobile pe slide */}
-      <div
-        className={`
+        {/* SIDEBAR: desktop pe hamesha open, mobile pe slide */}
+        <div
+          className={`
           fixed left-0 top-[72px]
           h-[calc(100vh-72px)]
           z-30
@@ -66,34 +65,34 @@ const DashboardLayout = () => {
           lg:static lg:translate-x-0 lg:h-screen lg:top-0
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
-      >
-        <Sidebar onLinkClick={closeSidebar} />
-      </div>
+        >
+          <Sidebar onLinkClick={closeSidebar} />
+        </div>
 
-      {/* MOBILE OVERLAY */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-x-0 top-[72px] bottom-0 bg-black/30 z-20 lg:hidden"
-          onClick={closeSidebar}
-        />
-      )}
+        {/* MOBILE OVERLAY */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-x-0 top-[72px] bottom-0 bg-black/30 z-20 lg:hidden"
+            onClick={closeSidebar}
+          />
+        )}
 
-      {/* RIGHT CONTENT: desktop pe sidebar ki width ke hisaab se shift */}
-      <div className="flex-1 flex flex-col pt-[72px] lg:ml-[20px]">
-        <main className="flex-1 bg-gray-50 overflow-y-auto">
-          <Routes>
-            <Route path="/" element={<Ecommerce />} />
-            <Route path="project" element={<Project />} />
-            <Route path="marketing" element={<Marketing />} />
-            <Route path="analytic" element={<Analytic />} />
+        {/* RIGHT CONTENT: desktop pe sidebar ki width ke hisaab se shift */}
+        <div className="flex-1 flex flex-col pt-[72px] lg:ml-[20px]">
+          <main className="flex-1 bg-gray-50 overflow-y-auto">
+            <Routes>
+              <Route path="/" element={<Ecommerce />} />
+              <Route path="project" element={<Project />} />
+              <Route path="marketing" element={<Marketing />} />
+              <Route path="analytic" element={<Analytic />} />
 
-            <Route path="ai/chat" element={<AiChat />} />
-            <Route path="projects/scrum-board" element={<Scrum_Board />} />
-            <Route path="projects/List" element={<List />} />
-            <Route path="projects/Details" element={<Details />} />
-          </Routes>
-        </main>
-      </div>
+              <Route path="ai/chat" element={<AiChat />} />
+              <Route path="projects/scrum-board" element={<Scrum_Board />} />
+              <Route path="projects/List" element={<List />} />
+              <Route path="projects/Details" element={<Details />} />
+            </Routes>
+          </main>
+        </div>
     </div>
   );
 };
